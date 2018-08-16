@@ -6,7 +6,7 @@ interface IRepository {
 }
 
 @injectable()
-class MockRepository implements IRepository {
+class RepositoryImpl implements IRepository {
     public find(query: any): any {
         return {};
     }
@@ -22,7 +22,7 @@ class Service {
 
 const container = new Container();
 
-container.bind<IRepository>("Repository").to(MockRepository);
+container.bind<IRepository>("Repository").to(RepositoryImpl);
 container.bind<Service>("Service").to(Service);
 
 const service = container.get<Service>("Service");
