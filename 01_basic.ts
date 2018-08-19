@@ -76,7 +76,7 @@ class ClientImpl implements IClient {
 // 依存関係を格納するコンテナを作成
 const container = new Container();
 
-// 識別子「Repository」に「RepositoryImpl」をバインドする。その型は「IRepository」である
+// 識別子「Repository」に「RepositoryImpl」クラスをバインドする。その型は「IRepository」である
 container.bind<IRepository>("Repository").to(RepositoryImpl);
 // 同様に残りもバインドしていく
 container.bind<IGateway>("Gateway").to(GatewayImpl);
@@ -84,10 +84,10 @@ container.bind<IService>("Service").to(ServiceImpl);
 container.bind<IClient>("Client").to(ClientImpl);
 
 // コンテナの設定が完了したので、利用してみる
-// 識別子「Client」のオブジェクトを取得を試みる
-// 1.  現在のコンテナ設定の識別子「Client」に対応するクラスである「ClientImpl」のコンストラクタが呼ばれる
+// 識別子「Client」にバインドされているオブジェクトを取得する
+// 1.  現在のコンテナ設定の識別子「Client」に対応するクラスである「ClientImpl」クラスのコンストラクタが呼ばれる
 // 2.  「ClientImpl」のコンストラクタは識別子「Service」のオブジェクトが必要なので取得を試みる
-// 3.  現在のコンテナ設定の識別子「Service」に対応するクラスである「ServiceImpl」のコンストラクタが呼ばれる
+// 3.  現在のコンテナ設定の識別子「Service」に対応するクラスである「ServiceImpl」クラスのコンストラクタが呼ばれる
 // 4+. 以下同様に依存関係が解決されていく
 const client = container.get<IClient>("Client");
 
